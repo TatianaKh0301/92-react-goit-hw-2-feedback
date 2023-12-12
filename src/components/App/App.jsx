@@ -18,8 +18,13 @@ class App extends Component {
         return this.state.good + this.state.neutral + this.state.bad;
     }
 
+    percentageGoodCount = () => {
+        return Number(((this.state.good / this.totalFeedbackCount()) * 100).toFixed(0))
+    }
+
     render() {
         const totalCount = this.totalFeedbackCount();
+        const percentageGood = this.percentageGoodCount();
         const options = Object.keys(this.state);
         return (
             <AppWrap>
@@ -31,7 +36,7 @@ class App extends Component {
                 </Section>
               
                 <Section title="Statistic"> 
-                    <Statistics good={this.state.good} neutral={this.state.neutral} bad={this.state.bad} total={totalCount}/>                
+                    <Statistics good={this.state.good} neutral={this.state.neutral} bad={this.state.bad} total={totalCount} perсentageGood={percentageGood}/>                
                 </Section>
             </AppWrap>
         );
